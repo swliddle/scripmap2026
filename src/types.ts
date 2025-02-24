@@ -27,4 +27,5 @@ export interface Volume extends Book {
 
 export type SuccessCallback = (text: Promise<string>) => void;
 
-export type NextPreviousParameters = [number, number, string] | null;
+export type NextPreviousTuple = [number, number, string];
+export type NextPreviousParameters = NextPreviousTuple | null;

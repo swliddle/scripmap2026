@@ -14,7 +14,7 @@ import { domNode, hyperlinkNode, replaceNodeContent, TAG_DIV, TAG_I } from "./ht
 import { setupMarkers } from "./mapHelper.js";
 import { books, requestChapterText } from "./mapScripApi.js";
 import { navElement } from "./scriptures.js";
-import { Book, NextPreviousParameters } from "./types.js";
+import { Book, NextPreviousParameters, NextPreviousTuple } from "./types.js";
 
 /*------------------------------------------------------------------------
  *                      CONSTANTS
@@ -34,22 +34,15 @@ let requestedChapter: number;
 /*------------------------------------------------------------------------
  *                      PRIVATE FUNCTIONS
  */
-const chapterNavigationNode = function (
-    parameters: NextPreviousParameters,
-    icon: string
-): HTMLElement {
+const chapterNavigationNode = function (parameters: NextPreviousTuple, icon: string): HTMLElement {
     // Build a node for next/previous chapter navigation
 
-    if (parameters) {
-        const [bookId, chapter, title] = parameters;
-        const node = hyperlinkNode(`#0:${bookId}:${chapter}`, title);
+    const [bookId, chapter, title] = parameters;
+    const node = hyperlinkNode(`#0:${bookId}:${chapter}`, title);
 
-        node.appendChild(domNode(TAG_I, CLASS_ICON, undefined, icon));
+    node.appendChild(domNode(TAG_I, CLASS_ICON, undefined, icon));
 
-        return node;
-    }
-
-    return domNode(TAG_DIV);
+    return node;
 };
 
 const getScripturesFailure = function (): void {
@@ -110,11 +103,11 @@ const nextPreviousNode = function (
 ) {
     const nextPreviousNode = domNode(TAG_DIV, CLASS_NEXT_PREV);
 
-    if (Array.isArray(previousParameters) && previousParameters.length > 0) {
+    if (previousParameters) {
         nextPreviousNode.appendChild(chapterNavigationNode(previousParameters, ICON_PREVIOUS));
     }
 
-    if (Array.isArray(nextParameters) && nextParameters.length > 0) {
+    if (nextParameters) {
         nextPreviousNode.appendChild(chapterNavigationNode(nextParameters, ICON_NEXT));
     }
 
