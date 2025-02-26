@@ -9,6 +9,7 @@
 /*----------------------------------------------------------------------
  *                      IMPORTS
  */
+import { animateToNewNavContent } from "./animation.js";
 import { configureBreadcrumbs } from "./breadcrumbs.js";
 import { navigateChapter } from "./chapter.js";
 import {
@@ -16,12 +17,10 @@ import {
     decorateNode,
     domNode,
     hyperlinkNode,
-    replaceNodeContent,
     TAG_DIV,
     TAG_HEADER5
 } from "./html.js";
 import { books, volumes, volumeIdIsValid } from "./mapScripApi.js";
-import { navElement } from "./scriptures.js";
 import { Book, Volume } from "./types.js";
 
 /*------------------------------------------------------------------
@@ -121,7 +120,7 @@ const navigateBook = function (bookId: number): void {
         const chaptersNavigationNode = domNode(TAG_DIV, undefined, ID_SCRIPTURES_NAVIGATION);
 
         buildChaptersGrid(chaptersNavigationNode, book);
-        replaceNodeContent(navElement, chaptersNavigationNode);
+        animateToNewNavContent(chaptersNavigationNode);
         configureBreadcrumbs(book.parentBookId, bookId);
     }
 };
@@ -130,7 +129,7 @@ const navigateHome = function (volumeId?: number): void {
     const scripturesNavigationNode = domNode(TAG_DIV, undefined, ID_SCRIPTURES_NAVIGATION);
 
     buildVolumesGrid(scripturesNavigationNode, volumeId);
-    replaceNodeContent(navElement, scripturesNavigationNode);
+    animateToNewNavContent(scripturesNavigationNode);
 
     configureBreadcrumbs(volumeId);
 };

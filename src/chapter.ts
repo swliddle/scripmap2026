@@ -9,11 +9,11 @@
 /*------------------------------------------------------------------------
  *                      IMPORTS
  */
+import { animateToNewNavContent } from "./animation.js";
 import { configureBreadcrumbs } from "./breadcrumbs.js";
 import { domNode, hyperlinkNode, replaceNodeContent, TAG_DIV, TAG_I } from "./html.js";
 import { setupMarkers } from "./mapHelper.js";
 import { books, requestChapterText } from "./mapScripApi.js";
-import { navElement } from "./scriptures.js";
 import { Book, NextPreviousParameters, NextPreviousTuple } from "./types.js";
 
 /*------------------------------------------------------------------------
@@ -46,12 +46,11 @@ const chapterNavigationNode = function (parameters: NextPreviousTuple, icon: str
 };
 
 const getScripturesFailure = function (): void {
-    replaceNodeContent(navElement, document.createTextNode("Unable to retrieve chapter contents."));
+    animateToNewNavContent("Unable to retrieve chapter contents.");
 };
 
 const getScripturesSuccess = async function (chapterHtml: Promise<string>): Promise<void> {
-    navElement.innerHTML = await chapterHtml;
-
+    animateToNewNavContent(await chapterHtml);
     injectNextPrevious();
     configureBreadcrumbs(0, requestedBookId, requestedChapter);
     setupMarkers();

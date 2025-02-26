@@ -64,6 +64,5 @@ export declare function volumeIdIsValid(volumeId: number): boolean;
 export declare function onHashChanged(): void;
 
 // scriptures.ts
-export let navElement: HTMLElement;
 export declare function init(callback: () => void): void;
 export declare function panAndZoom(lat: number, lng: number, viewAltitude: number): void;

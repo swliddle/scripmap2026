@@ -18,6 +18,8 @@ import { AnimationType } from "./types.js";
  */
 const ID_CRUMBS1 = "crumbs1";
 const ID_CRUMBS2 = "crumbs2";
+const ID_SCRIPTURES1 = "scriptures1";
+const ID_SCRIPTURES2 = "scriptures2";
 
 /*------------------------------------------------------------------------
  *                      PRIVATE VARIABLES
@@ -31,7 +33,7 @@ let onscreenNav: HTMLElement | null;
  *                      PRIVATE METHODS
  */
 const animateToNewContent = function (
-    content: HTMLElement,
+    content: HTMLElement | string,
     animationType = AnimationType.crossFade,
     [onscreenDiv, offscreenDiv]: [HTMLElement, HTMLElement]
 ): void {
@@ -55,12 +57,18 @@ const performAnimation = function (
 };
 
 const prepareToAnimate = function (
-    content: HTMLElement,
+    content: HTMLElement | string,
     animationType: AnimationType,
     offscreenDiv: HTMLElement
 ) {
     offscreenDiv.className = `animationUnit ${animationType}-prepare-offscreen`;
-    replaceNodeContent(offscreenDiv, content);
+
+    if (typeof content === "string") {
+        offscreenDiv.innerHTML = content;
+    } else {
+        replaceNodeContent(offscreenDiv, content);
+    }
+
     offscreenDiv.scrollTop = 0;
 };
 
@@ -81,7 +89,18 @@ export const animateToNewCrumbs = function (newCrumbs: HTMLElement): void {
     }
 };
 
+export const animateToNewNavContent = function (
+    newContent: HTMLElement | string,
+    animationType = AnimationType.crossFade
+): void {
+    if (onscreenNav && offscreenNav) {
+        animateToNewContent(newContent, animationType, [onscreenNav, offscreenNav]);
+    }
+};
+
 export const animationInit = function (): void {
     offscreenCrumbs = document.getElementById(ID_CRUMBS1);
     onscreenCrumbs = document.getElementById(ID_CRUMBS2);
+    offscreenNav = document.getElementById(ID_SCRIPTURES1);
+    onscreenNav = document.getElementById(ID_SCRIPTURES2);
 };

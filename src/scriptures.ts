@@ -16,29 +16,12 @@ import { apiInit } from "./mapScripApi.js";
 import { onHashChanged } from "./navigation.js";
 
 /*------------------------------------------------------------------
- *                      CONSTANTS
- */
-const ID_NAV_ELEMENT = "nav-root";
-
-/*------------------------------------------------------------------
- *                      PRIVATE VARIABLES
- */
-export let navElement: HTMLElement;
-
-/*------------------------------------------------------------------
  *                      PUBLIC METHODS
  */
 export function init(callback: () => void): void {
     animationInit();
     apiInit(callback);
     mapInit();
-
-    // look up all the DOM elements we want to manipulate
-    const nav = document.getElementById(ID_NAV_ELEMENT);
-
-    if (nav) {
-        navElement = nav;
-    }
 }
 
 export { onHashChanged };
