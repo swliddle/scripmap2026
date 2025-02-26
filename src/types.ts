@@ -1,7 +1,7 @@
 export enum AnimationType {
-    slideLeft,
-    slideRight,
-    crossFade
+    slideLeft = "slideleft",
+    slideRight = "slideright",
+    crossFade = "crossfade"
 }
 
 export interface Book {

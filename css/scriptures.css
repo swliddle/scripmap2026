@@ -104,12 +104,14 @@ header#scrip-header {
     color: white;
 }
 
-#crumbs,
-#crumbs-complement {
+#crumbs {
     flex-shrink: 0;
     display: flex;
     align-items: center;
-    position: relative;
+    position: absolute;
+    left: 0.5em;
+    top: 0.8em;
+    width: 100%;
 }
 
 #crumbs1,
@@ -119,10 +121,7 @@ header#scrip-header {
     top: 0;
     width: 100%;
     height: 100%;
-}
-
-#crumbs-complement {
-    visibility: hidden;
+    padding-top: 0.8em;
 }
 
 .title-block {
@@ -380,15 +379,13 @@ span.verse {
     line-height: 1.45em;
 }
 
-#crumbs ul,
-#crumbs-complement ul {
+#crumbs ul {
     padding: 0;
     margin: 0;
     line-height: 1;
 }
 
-#crumbs li,
-#crumbs-complement li {
+#crumbs li {
     padding: 0;
     margin: 0;
     list-style: none;
@@ -407,8 +404,7 @@ span.verse {
     text-decoration: underline;
 }
 
-#crumbs li:not(:first-child)::before,
-#crumbs-complement li:not(:first-child)::before {
+#crumbs li:not(:first-child)::before {
     content: ">";
     padding: 0.3em;
 }
@@ -437,4 +433,69 @@ span.verse {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+/*------------------------------------------------------------------------
+ *                      ANIMATION RULES
+ */
+.animationUnit {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/*
+  * The "prepare" classes position the offscreen div where it needs to
+  * be when we start the animation (either to the right, left, or in
+  * the original position respectively).  Note that the cross-faded
+  * animation starts out transparent.
+  */
+.slideleft-prepare-offscreen {
+    left: 100%;
+    opacity: 1;
+}
+
+.slideright-prepare-offscreen {
+    left: -100%;
+    opacity: 1;
+}
+
+.crossfade-prepare-offscreen {
+    opacity: 0;
+    z-index: 2;
+}
+
+/*
+ * The onscreen div is in its normal position, fully opaque.
+ */
+.onscreen {
+    left: 0;
+    z-index: 2;
+    opacity: 1;
+    transition: 350ms ease-out;
+    transition-property: left, opacity;
+}
+
+/*
+ * Unlike the "prepare" classes, the "offscreen" divs DO need to animate.
+ * They end up to the left, right, and original position, respectively.
+ * Note that the cross-faded offscreen div should be transparent and below
+ * the onscreen div.
+ */
+.slideleft-offscreen {
+    left: -100%;
+    transition: left 350ms ease-out;
+}
+
+.slideright-offscreen {
+    left: 100%;
+    transition: left 350ms ease-out;
+}
+
+.crossfade-offscreen {
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 350ms ease-out;
 }

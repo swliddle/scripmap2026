@@ -24,13 +24,6 @@ import { books, volumes } from "./mapScripApi.js";
  */
 const HOME_BREADCRUMB = "The Scriptures";
 const ID_CRUMBS = "crumbs";
-const ID_CRUMBS_COMPLEMENT = "crumbs-complement";
-
-/*----------------------------------------------------------------------
- *                      PRIVATE VARIABLES
- */
-let crumbsElement: HTMLElement | null;
-let crumbsComplementElement: HTMLElement | null;
 
 /*----------------------------------------------------------------------
  *                      PRIVATE FUNCTIONS
@@ -86,18 +79,5 @@ export const configureBreadcrumbs = function (
         }
     }
 
-    // NEEDSWORK: figure out a better way to handle DOM tree interactions
-    if (crumbsElement === undefined) {
-        crumbsElement = document.getElementById(ID_CRUMBS);
-        crumbsComplementElement = document.getElementById(ID_CRUMBS_COMPLEMENT);
-    }
-
-    if (crumbsElement) {
-        // replaceNodeContent(crumbsElement, crumbs);
-        animateToNewCrumbs(crumbs);
-    }
-
-    if (crumbsComplementElement) {
-        // replaceNodeContent(crumbsComplementElement, crumbs.cloneNode(true));
-    }
+    animateToNewCrumbs(crumbs);
 };
