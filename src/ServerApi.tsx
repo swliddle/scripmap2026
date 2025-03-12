@@ -9,7 +9,7 @@
 /*----------------------------------------------------------------------
  *                      IMPORTS
  */
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Book, Books, SuccessCallback, Volume } from "./Types";
 
 /*----------------------------------------------------------------------
@@ -54,28 +54,34 @@ export const useFetchScripturesData = function () {
     const [isLoading, setIsLoading] = useState(true);
     const [volumes, setVolumes] = useState(Array<Volume>());
 
-    const cacheBooks = useCallback(function () {
-        // We have both volumes and books from the server, so here we
-        // build an array of books for each volume so it's easy to get
-        // the books when we have a volume object.  This is helpful,
-        // for example, when building the navigation grid of books for
-        // a given volume.
+    useEffect(
+        function () {
+            if (volumes.length > 0 && Object.keys(books).length > 0) {
+                // We have both volumes and books from the server, so here we
+                // build an array of books for each volume so it's easy to get
+                // the books when we have a volume object.  This is helpful,
+                // for example, when building the navigation grid of books for
+                // a given volume.
 
-        volumes.forEach(function (volume) {
-            const volumeBooks: Book[] = [];
-            let bookId = volume.minBookId;
+                volumes.forEach(function (volume) {
+                    const volumeBooks: Book[] = [];
+                    let bookId = volume.minBookId;
 
-            while (bookId <= volume.maxBookId) {
-                volumeBooks.push(books[bookId]);
-                bookId += 1;
+                    while (bookId <= volume.maxBookId) {
+                        volumeBooks.push(books[bookId]);
+                        bookId += 1;
+                    }
+
+                    volume.books = volumeBooks;
+                });
+
+                Object.freeze(books);
+                Object.freeze(volumes);
+                setIsLoading(false);
             }
-
-            volume.books = volumeBooks;
-        });
-
-        Object.freeze(books);
-        Object.freeze(volumes);
-    }, []);
+        },
+        [books, volumes, setIsLoading]
+    );
 
     useEffect(() => {
         Promise.all(
@@ -84,11 +90,9 @@ export const useFetchScripturesData = function () {
             if (jsonVolumes !== undefined && jsonBooks !== undefined) {
                 setVolumes(jsonVolumes as Volume[]);
                 setBooks(jsonBooks as Books);
-                cacheBooks();
-                setIsLoading(false);
             }
         });
-    }, [cacheBooks, setBooks, setIsLoading, setVolumes]);
+    }, [setBooks, setVolumes]);
 
     return { books, isLoading, volumes };
 };

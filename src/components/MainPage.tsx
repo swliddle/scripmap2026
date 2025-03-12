@@ -1,22 +1,18 @@
-import LoadingIndicator from "./LoadingIndicator";
+import { Navigation } from "./Navigation";
 
 function Header() {
     return <div>Header</div>;
-}
-
-function Navigation() {
-    return <div>Navigation</div>;
 }
 
 function MapDisplay() {
     return <div>MapDisplay</div>;
 }
 
-export default function MainPage({ isLoading }: { isLoading: boolean }) {
+export default function MainPage() {
     return (
         <>
             <Header />
-            {isLoading ? <LoadingIndicator /> : <Navigation />}
+            <Navigation />
             <MapDisplay />
         </>
     );

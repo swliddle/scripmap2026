@@ -57,3 +57,9 @@ export interface Volume extends Book {
     maxBookId: number;
     books: Book[];
 }
+
+export type ScripturesContextType = {
+    books: Books;
+    isLoading: boolean;
+    volumes: Volume[];
+};
