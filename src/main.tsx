@@ -1,10 +1,15 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.tsx";
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+const rootDiv = document.getElementById("root");
+
+if (rootDiv) {
+    createRoot(rootDiv).render(
+        // NEEDSWORK: remove StrictMode when deploying to production
+        <StrictMode>
+            <App />
+        </StrictMode>
+    );
+}
