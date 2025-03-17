@@ -21,6 +21,10 @@ export interface Book {
     citeFull: string;
 }
 
+export interface Book {
+    [key: string]: unknown;
+}
+
 export interface Books {
     [key: string]: Book;
 }
@@ -56,6 +60,10 @@ export interface Volume extends Book {
     minBookId: number;
     maxBookId: number;
     books: Book[];
+}
+
+export interface Volume {
+    [key: string]: unknown;
 }
 
 export type ScripturesContextType = {

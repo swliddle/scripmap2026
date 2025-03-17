@@ -84,10 +84,44 @@ export const useFetchScripturesData = function () {
     );
 
     useEffect(() => {
+        const replaceEntities = (text: string) =>
+            text.replaceAll("&mdash;", "—").replaceAll("&amp;", "&");
+
+        const conditionallyReplace = (obj: { [key: string]: unknown }, props: string[]) => {
+            props.forEach((prop) => {
+                const property = obj[prop];
+
+                if (typeof property === "string") {
+                    if (property.includes("&")) {
+                        obj[prop] = replaceEntities(property);
+                    }
+                }
+            });
+        };
+
+        const replaceHtmlEntities = function (volumesData: Volume[], booksData: Books) {
+            volumesData.forEach((volume) => {
+                conditionallyReplace(volume, ["citeAbbr"]);
+            });
+
+            Object.keys(booksData).forEach((bookId) => {
+                conditionallyReplace(booksData[bookId], [
+                    "backName",
+                    "citeAbbr",
+                    "citeFull",
+                    "fullName",
+                    "gridName",
+                    "subdiv",
+                    "tocName"
+                ]);
+            });
+        };
+
         Promise.all(
             [URL_VOLUMES, URL_BOOKS].map((url) => fetch(url).then((response) => response.json()))
         ).then(([jsonVolumes, jsonBooks]) => {
             if (jsonVolumes !== undefined && jsonBooks !== undefined) {
+                replaceHtmlEntities(jsonVolumes, jsonBooks);
                 setVolumes(jsonVolumes as Volume[]);
                 setBooks(jsonBooks as Books);
             }

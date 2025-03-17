@@ -4,6 +4,7 @@ import { useScripturesDataContext } from "../context/ScripturesDataContextHook";
 import { BookProps } from "../Types";
 import LoadingIndicator from "./LoadingIndicator";
 import { CLASS_BUTTON } from "../Constants";
+import "./BookComponent.css";
 
 export default function BookComponent(props: BookProps) {
     const { isLoading, books } = useScripturesDataContext();

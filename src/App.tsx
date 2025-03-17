@@ -1,9 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./App.css";
 import MainPage from "./components/MainPage";
 import { ScripturesDataProvider } from "./context/ScripturesDataProvider";
 import VolumesList from "./components/VolumesList";
 import BookComponent from "./components/BookComponent";
+import "./App.css";
+import "./Waves.js";
+import "./Waves.css";
 
 function ChapterComponent() {
     return <div>Some chapter</div>;

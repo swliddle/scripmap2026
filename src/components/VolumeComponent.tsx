@@ -12,7 +12,7 @@ export default function VolumeComponent({ volume }: VolumeProps) {
     }
 
     return (
-        <div>
+        <div className="volume">
             <h5>{volume?.fullName}</h5>
             <div className="books">
                 {volume?.books.map((book) => (

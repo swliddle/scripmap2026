@@ -1,0 +1,4 @@
+section.MapDisplay {
+    background-color: bisque;
+    grid-area: map;
+}
