@@ -1,8 +1,22 @@
+/*======================================================================
+ * FILE:    Breadcrumbs.tsx
+ * AUTHOR:  Stephen W. Liddle
+ * DATE:    Winter 2025
+ *
+ * DESCRIPTION: Breadcrumb navigation component.
+ */
+
+/*----------------------------------------------------------------------
+ *                      IMPORTS
+ */
 import { Link, Route, Routes, useParams } from "react-router-dom";
 import { HOME_BREADCRUMB } from "../Constants";
 import { useScripturesDataContext } from "../context/ScripturesDataContextHook";
 import "./Breadcrumbs.css";
 
+/*----------------------------------------------------------------------
+ *                      PRIVATE HELPERS
+ */
 function BreadcrumbsContent() {
     const { volumeId, bookId, chapter } = useParams();
     const { volumes, books } = useScripturesDataContext();
@@ -52,6 +66,9 @@ function BreadcrumbsContent() {
     );
 }
 
+/*----------------------------------------------------------------------
+ *                      COMPONENT
+ */
 export default function Breadcrumbs() {
     return (
         <Routes>

@@ -1,3 +1,14 @@
+/*======================================================================
+ * FILE:    Types.ts
+ * AUTHOR:  Stephen W. Liddle
+ * DATE:    Winter 2025
+ *
+ * DESCRIPTION: Useful interfaces and other type expressions.
+ */
+
+/*----------------------------------------------------------------------
+ *                      TYPES
+ */
 export enum AnimationType {
     slideLeft = "slideleft",
     slideRight = "slideright",

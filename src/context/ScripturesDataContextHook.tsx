@@ -1,7 +1,21 @@
+/*======================================================================
+ * FILE:    ScripturesDataContextHook.tsx
+ * AUTHOR:  Stephen W. Liddle
+ * DATE:    Winter 2025
+ *
+ * DESCRIPTION: Custom hook for accessing our app's context.
+ */
+
+/*----------------------------------------------------------------------
+ *                      IMPORTS
+ */
 import { use } from "react";
 import { ScripturesContextType } from "../Types";
 import { ScripturesDataContext } from "./ScripturesData";
 
+/*----------------------------------------------------------------------
+ *                      CUSTOM HOOK
+ */
 export function useScripturesDataContext(): ScripturesContextType {
     const context = use(ScripturesDataContext);
 

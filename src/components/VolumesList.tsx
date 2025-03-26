@@ -1,9 +1,23 @@
+/*======================================================================
+ * FILE:    VolumesList.tsx
+ * AUTHOR:  Stephen W. Liddle
+ * DATE:    Winter 2025
+ *
+ * DESCRIPTION: Component listing all requested volumes.
+ */
+
+/*----------------------------------------------------------------------
+ *                      IMPORTS
+ */
 import { useParams } from "react-router-dom";
 import { useScripturesDataContext } from "../context/ScripturesDataContextHook";
 import LoadingIndicator from "./LoadingIndicator";
 import VolumeComponent from "./VolumeComponent";
 import "./VolumesList.css";
 
+/*----------------------------------------------------------------------
+ *                      COMPONENT
+ */
 export default function VolumesList(props: React.ComponentProps<"div">) {
     const { isLoading, volumes } = useScripturesDataContext();
     const { volumeId } = useParams();

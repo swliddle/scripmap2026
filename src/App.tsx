@@ -1,3 +1,14 @@
+/*======================================================================
+ * FILE:    App.tsx
+ * AUTHOR:  Stephen W. Liddle
+ * DATE:    Winter 2025
+ *
+ * DESCRIPTION: Top-level app component of our React app.
+ */
+
+/*----------------------------------------------------------------------
+ *                      IMPORTS
+ */
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BookComponent from "./components/BookComponent";
 import ChapterComponent from "./components/ChapterComponent.js";
@@ -10,11 +21,17 @@ import "./App.css";
 import "./Waves.js";
 import "./Waves.css";
 
+/*----------------------------------------------------------------------
+ *                      PRIVATE HELPERS
+ */
 function ErrorPage() {
     return <div>There was a routing error.</div>;
 }
 
-function App() {
+/*----------------------------------------------------------------------
+ *                      COMPONENT
+ */
+export default function App() {
     const router = createBrowserRouter([
         {
             path: "*",
@@ -40,5 +57,3 @@ function App() {
         </ScripturesDataProvider>
     );
 }
-
-export default App;

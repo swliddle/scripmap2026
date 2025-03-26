@@ -1,9 +1,23 @@
+/*======================================================================
+ * FILE:    VolumeComponent.tsx
+ * AUTHOR:  Stephen W. Liddle
+ * DATE:    Winter 2025
+ *
+ * DESCRIPTION: Single volume display component with grid of books.
+ */
+
+/*----------------------------------------------------------------------
+ *                      IMPORTS
+ */
 import { Link } from "react-router-dom";
 import { useScripturesDataContext } from "../context/ScripturesDataContextHook";
 import { VolumeProps } from "../Types";
 import LoadingIndicator from "./LoadingIndicator";
 import { CLASS_BUTTON } from "../Constants";
 
+/*----------------------------------------------------------------------
+ *                      COMPONENT
+ */
 export default function VolumeComponent({ volume }: VolumeProps) {
     const { volumes, isLoading } = useScripturesDataContext();
 

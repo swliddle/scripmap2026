@@ -1,3 +1,14 @@
+/*======================================================================
+ * FILE:    BookComponent.tsx
+ * AUTHOR:  Stephen W. Liddle
+ * DATE:    Winter 2025
+ *
+ * DESCRIPTION: Book component displaying grid of chapters.
+ */
+
+/*----------------------------------------------------------------------
+ *                      IMPORTS
+ */
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useScripturesDataContext } from "../context/ScripturesDataContextHook";
@@ -6,6 +17,9 @@ import LoadingIndicator from "./LoadingIndicator";
 import { CLASS_BUTTON } from "../Constants";
 import "./BookComponent.css";
 
+/*----------------------------------------------------------------------
+ *                      COMPONENT
+ */
 export default function BookComponent(props: BookProps) {
     const { isLoading, books } = useScripturesDataContext();
     const { bookId } = useParams();

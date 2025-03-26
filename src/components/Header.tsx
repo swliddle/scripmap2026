@@ -1,7 +1,21 @@
+/*======================================================================
+ * FILE:    Header.tsx
+ * AUTHOR:  Stephen W. Liddle
+ * DATE:    Winter 2025
+ *
+ * DESCRIPTION: Header component with title and breadcrumbs.
+ */
+
+/*----------------------------------------------------------------------
+ *                      IMPORTS
+ */
 import Breadcrumbs from "./Breadcrumbs";
 import "./Header.css";
 
-function Header() {
+/*----------------------------------------------------------------------
+ *                      COMPONENT
+ */
+export default function Header() {
     return (
         <header>
             <Breadcrumbs />
@@ -12,5 +26,3 @@ function Header() {
         </header>
     );
 }
-
-export default Header;
