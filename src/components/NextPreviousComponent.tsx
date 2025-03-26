@@ -203,3 +203,23 @@ export default function NextPreviousComponent() {
         </div>
     );
 }
+
+export function NextSideComponent({ bookId, chapter }: { bookId?: string; chapter?: string }) {
+    const { books } = useScripturesDataContext();
+
+    return (
+        <div className="nav-previous">
+            {previousMarkup(previousChapter(Number(bookId), Number(chapter), books))}
+        </div>
+    );
+}
+
+export function PreviousSideComponent({ bookId, chapter }: { bookId?: string; chapter?: string }) {
+    const { books } = useScripturesDataContext();
+
+    return (
+        <div className="nav-next">
+            {nextMarkup(nextChapter(Number(bookId), Number(chapter), books))}
+        </div>
+    );
+}

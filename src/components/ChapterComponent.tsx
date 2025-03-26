@@ -9,18 +9,22 @@
 /*----------------------------------------------------------------------
  *                      IMPORTS
  */
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import "./ChapterComponent.css";
+import { NextSideComponent, PreviousSideComponent } from "./NextPreviousComponent";
 
 /*----------------------------------------------------------------------
  *                      COMPONENT
  */
 export default function ChapterComponent() {
+    const { bookId, chapter } = useParams();
     const chapterHtml = useLoaderData();
 
     return (
         <div className="with-nav-buttons">
+            <PreviousSideComponent bookId={bookId} chapter={chapter} />
             <div className="chapter-content" dangerouslySetInnerHTML={{ __html: chapterHtml }} />
+            <NextSideComponent bookId={bookId} chapter={chapter} />
         </div>
     );
 }
