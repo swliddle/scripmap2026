@@ -1,4 +1,5 @@
 .next-prev-wrapper {
+    grid-area: nextprev;
     flex: 1 1 auto;
     display: flex;
     align-items: center;

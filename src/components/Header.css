@@ -10,9 +10,11 @@ header {
 }
 
 .centerhead {
-    flex: 1 1 70%;
+    position: absolute;
+    width: 100%;
     text-align: center;
     font-weight: normal;
+    z-index: 0;
 }
 
 .title {
@@ -29,8 +31,8 @@ header {
 
 @media screen and (max-width: 67rem) {
     .centerhead {
-        align-items: flex-end;
-        padding-inline-end: 1rem;
+        right: 1rem;
+        width: auto;
     }
 
     .centerhead .subtitle {
