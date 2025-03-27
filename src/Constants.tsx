@@ -21,9 +21,9 @@ export const ICON_NEXT = (
             points="6.5 6.5 48 91 6.5 175.5"
             fill="none"
             stroke="#231f20"
-            stroke-linecap="round"
-            stroke-miterlimit="13"
-            stroke-width="13"
+            strokeLinecap="round"
+            strokeMiterlimit="13"
+            strokeWidth="13"
         />
     </svg>
 );
@@ -35,9 +35,9 @@ export const ICON_NEXT_SMALL = (
             points="13.5 51.5 55 129 13.5 206.5"
             fill="none"
             stroke="#231f20"
-            stroke-linecap="round"
-            stroke-miterlimit="20"
-            stroke-width="20"
+            strokeLinecap="round"
+            strokeMiterlimit="20"
+            strokeWidth="20"
         />
     </svg>
 );
@@ -49,9 +49,9 @@ export const ICON_PREVIOUS = (
             className="nav-icon"
             fill="none"
             stroke="#231f20"
-            stroke-linecap="round"
-            stroke-miterlimit="13"
-            stroke-width="13"
+            strokeLinecap="round"
+            strokeMiterlimit="13"
+            strokeWidth="13"
         />
     </svg>
 );
@@ -63,9 +63,9 @@ export const ICON_PREVIOUS_SMALL = (
             className="nav-icon"
             fill="none"
             stroke="#231f20"
-            stroke-linecap="round"
-            stroke-miterlimit="20"
-            stroke-width="20"
+            strokeLinecap="round"
+            strokeMiterlimit="20"
+            strokeWidth="20"
         />
     </svg>
 );

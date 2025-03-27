@@ -178,6 +178,8 @@ div.books a.chapter {
     font-size: 120%;
     line-height: 1.45em;
     -webkit-text-size-adjust: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 div.chapterheading {
@@ -256,7 +258,8 @@ span.verse {
 }
 
 .scripturecontent ul {
-    padding-inline-start: 0;
+    padding-inline-start: 0.6em;
+    padding-inline-end: 0.6em;
 }
 
 .match {

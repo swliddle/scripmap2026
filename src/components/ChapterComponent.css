@@ -72,3 +72,16 @@ fade-exit-active {
     opacity: 0;
     transition: opacity 350ms;
 }
+
+@media screen and (max-width: 44rem) {
+    .nav-next a,
+    .nav-previous a {
+        position: absolute;
+        top: 0;
+        height: 100%;
+    }
+
+    .nav-next a {
+        right: 0;
+    }
+}
