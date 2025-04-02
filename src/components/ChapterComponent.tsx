@@ -14,6 +14,7 @@ import "./ChapterComponent.css";
 import { NextSideComponent, PreviousSideComponent } from "./NextPreviousComponent";
 import { useScripturesDataContext } from "../context/ScripturesDataContextHook";
 import { useEffect } from "react";
+import { ANIMATION_MARKER_DELAY } from "../Constants";
 
 /*----------------------------------------------------------------------
  *                      COMPONENT
@@ -26,7 +27,7 @@ export default function ChapterComponent() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setGeoplaces(geoplaces);
-        }, 300);
+        }, ANIMATION_MARKER_DELAY);
 
         return () => clearTimeout(timer);
     }, [geoplaces, setGeoplaces]);

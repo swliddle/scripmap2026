@@ -9,15 +9,19 @@
 /*----------------------------------------------------------------------
  *                      IMPORTS
  */
-import { AdvancedMarker, APIProvider, Map } from "@vis.gl/react-google-maps";
-import "./MapDisplay.css";
-import { useScripturesDataContext } from "../context/ScripturesDataContextHook";
 import { useMemo } from "react";
+import { AdvancedMarker, APIProvider, Map } from "@vis.gl/react-google-maps";
+import { MapBoundsUpdater } from "./MapBoundsUpdater";
+import { useScripturesDataContext } from "../context/ScripturesDataContextHook";
+import "./MapDisplay.css";
 
 /*----------------------------------------------------------------------
  *                      CONSTANTS
  */
 const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+const CLASS_GEOPLACE_MARKER = "geoplace-marker";
+const CLASS_LABEL = "label";
+const CLASS_PIN = "pin";
 const DEFAULT_GESTURE_HANDLING = "greedy";
 const DEFAULT_MAP_TYPE_ID = "terrain";
 const DEFAULT_ZOOM = 8;
@@ -46,7 +50,12 @@ export default function MapDisplay() {
                 key={key}
                 position={{ lat: geoplace.latitude, lng: geoplace.longitude }}
                 title={geoplace.placename}
-            />
+            >
+                <div className={CLASS_GEOPLACE_MARKER}>
+                    <div className={CLASS_PIN}></div>
+                    <div className={CLASS_LABEL}>{geoplace.placename}</div>
+                </div>
+            </AdvancedMarker>
         ));
     }, [geoplaces]);
 
@@ -72,6 +81,7 @@ export default function MapDisplay() {
                 >
                     {markers}
                 </Map>
+                <MapBoundsUpdater />
             </section>
         </APIProvider>
     );

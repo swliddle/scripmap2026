@@ -13,7 +13,12 @@ import { createRef, RefObject } from "react";
 import { useLocation, useOutlet } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { LRUCache } from "lru-cache";
-import { ANIMATION_KEY_NEXT, ANIMATION_KEY_PREVIOUS, MS_PER_HOUR } from "../Constants";
+import {
+    ANIMATION_DURATION,
+    ANIMATION_KEY_NEXT,
+    ANIMATION_KEY_PREVIOUS,
+    MS_PER_HOUR
+} from "../Constants";
 import "./Navigation.css";
 
 /*----------------------------------------------------------------------
@@ -59,7 +64,7 @@ export default function Navigation() {
                 <CSSTransition
                     key={pathname}
                     nodeRef={nodeRef}
-                    timeout={500}
+                    timeout={ANIMATION_DURATION}
                     classNames={classNamesFor(state)}
                     unmountOnExit
                 >

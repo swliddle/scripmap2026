@@ -15,23 +15,11 @@ import { GeoPlaces, GeoPlace } from "../Types";
 /*----------------------------------------------------------------------
  *                      CONSTANTS
  */
-const LAT_LON_PARSER = /showLocation\((.*),'(.*)',(.*),(.*),(.*),'(.*)'\)/g;
+const LAT_LON_PARSER = /showLocation\(([0-9]*),'([^']*)',([^,]*),([^,]*),([^,]*),'([^']*)'\)/g;
 
 /*----------------------------------------------------------------------
- *                      PRIVATE FUNCTIONS
+ *                      PUBLIC FUNCTIONS
  */
-// const boundsForCurrentMarkers = function (): google.maps.LatLngBounds {
-//     const bounds = new google.maps.LatLngBounds();
-
-//     mapMarkers.forEach((marker) => {
-//         if (marker.position) {
-//             bounds.extend(marker.position);
-//         }
-//     });
-
-//     return bounds;
-// };
-
 export const extractGeoplaces = function (html: string): GeoPlaces {
     const uniqueGeoplaces: GeoPlaces = {};
 
@@ -89,17 +77,6 @@ const placenameWithFlag = function (name: string, flag?: string): string {
 
     return placename;
 };
-
-// const zoomLevelForAltitude = function (viewAltitude: number): number {
-//     let zoomLevel = viewAltitude / ZOOM_RATIO;
-
-//     if (viewAltitude !== VIEW_ALTITUDE_DEFAULT) {
-//         zoomLevel =
-//             Math.log2(VIEW_ALTITUDE_CONVERSION_RATIO / viewAltitude) + VIEW_ALTITUDE_ZOOM_ADJUST;
-//     }
-
-//     return zoomLevel;
-// };
 
 // const zoomMapToFitMarkers = function (viewAltitude: number): void {
 //     if (mapMarkers.length > 0) {
