@@ -10,7 +10,7 @@
  *                      IMPORTS
  */
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { useScripturesDataContext } from "../context/ScripturesDataContextHook";
 import { BookProps } from "../Types";
 import LoadingIndicator from "./LoadingIndicator";
@@ -36,8 +36,7 @@ export default function BookComponent(props: BookProps) {
     }
 
     if (book.numChapters <= 1) {
-        // NEEDSWORK: implement this redirect
-        return <div>Need to redirect to the chapter component.</div>;
+        return <Navigate to={`/${book.parentBookId}/${book.id}/${book.numChapters}`} replace />;
     }
 
     const chaptersList = [];

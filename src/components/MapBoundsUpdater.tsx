@@ -31,7 +31,7 @@ const zoomLevelForAltitude = function (viewAltitude: number): number {
 
 export function MapBoundsUpdater() {
     const map = useMap();
-    const { geoplaces } = useScripturesDataContext();
+    const { focusedGeoplace, geoplaces } = useScripturesDataContext();
 
     useEffect(() => {
         if (!map || typeof google === "undefined" || !google.maps || !google.maps.LatLngBounds) {
@@ -39,7 +39,10 @@ export function MapBoundsUpdater() {
             return;
         }
 
-        if (geoplaces && Object.keys(geoplaces).length > 0) {
+        if (focusedGeoplace) {
+            map.setCenter({ lat: focusedGeoplace.latitude, lng: focusedGeoplace.longitude });
+            map.setZoom(zoomLevelForAltitude(focusedGeoplace.viewAltitude));
+        } else if (geoplaces && Object.keys(geoplaces).length > 0) {
             const places = Object.values(geoplaces);
 
             if (places.length <= 1) {
@@ -49,7 +52,7 @@ export function MapBoundsUpdater() {
                 map.fitBounds(boundsForCurrentMarkers(places));
             }
         }
-    }, [geoplaces, map]);
+    }, [focusedGeoplace, geoplaces, map]);
 
     return null;
 }

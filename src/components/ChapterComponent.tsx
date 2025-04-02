@@ -13,7 +13,7 @@ import { useLoaderData, useParams } from "react-router-dom";
 import "./ChapterComponent.css";
 import { NextSideComponent, PreviousSideComponent } from "./NextPreviousComponent";
 import { useScripturesDataContext } from "../context/ScripturesDataContextHook";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ANIMATION_MARKER_DELAY } from "../Constants";
 
 /*----------------------------------------------------------------------
@@ -21,16 +21,30 @@ import { ANIMATION_MARKER_DELAY } from "../Constants";
  */
 export default function ChapterComponent() {
     const { bookId, chapter } = useParams();
-    const { setGeoplaces } = useScripturesDataContext();
-    const { html, geoplaces } = useLoaderData();
+    const { setFocusedGeoplace, setGeoplaces } = useScripturesDataContext();
+    const loaderData = useLoaderData();
+    const [cachedData, setCachedData] = useState(loaderData);
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setGeoplaces(geoplaces);
-        }, ANIMATION_MARKER_DELAY);
+        if (loaderData) {
+            setCachedData(loaderData);
 
-        return () => clearTimeout(timer);
-    }, [geoplaces, setGeoplaces]);
+            const timer = setTimeout(() => {
+                setGeoplaces(loaderData.geoplaces);
+                setFocusedGeoplace(null);
+            }, ANIMATION_MARKER_DELAY);
+
+            return () => clearTimeout(timer);
+        } else {
+            setGeoplaces(null);
+        }
+    }, [loaderData, setCachedData, setFocusedGeoplace, setGeoplaces]);
+
+    const html = loaderData?.html ?? cachedData?.html;
+
+    if (!html) {
+        return null;
+    }
 
     return (
         <div className="with-nav-buttons">

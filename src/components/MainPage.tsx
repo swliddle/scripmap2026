@@ -9,15 +9,31 @@
 /*----------------------------------------------------------------------
  *                      IMPORTS
  */
+import { useEffect } from "react";
 import Header from "./Header";
 import MapDisplay from "./MapDisplay";
 import Navigation from "./Navigation";
 import NextPreviousComponent from "./NextPreviousComponent";
+import { useScripturesDataContext } from "../context/ScripturesDataContextHook";
 
 /*----------------------------------------------------------------------
  *                      COMPONENT
  */
 export default function MainPage() {
+    const { setFocusedGeoplace } = useScripturesDataContext();
+
+    useEffect(() => {
+        window.showLocation = (
+            _id: number,
+            placename: string,
+            latitude: number,
+            longitude: number,
+            viewAltitude: number
+        ) => {
+            setFocusedGeoplace({ latitude, longitude, placename, viewAltitude });
+        };
+    }, [setFocusedGeoplace]);
+
     return (
         <main>
             <Header />

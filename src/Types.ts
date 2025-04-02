@@ -84,11 +84,22 @@ export interface Volume {
 
 export type ScripturesContextType = {
     books: Books;
+    focusedGeoplace: GeoPlace | null;
     geoplaces: GeoPlaces | null;
     isLoading: boolean;
+    setFocusedGeoplace: (geoplace: GeoPlace | null) => void;
     setGeoplaces: (geoplaces: GeoPlaces | null) => void;
     volumes: Volume[];
 };
+
+export type ShowLocationFunction = (
+    id: number,
+    placename: string,
+    latitude: number,
+    longitude: number,
+    viewAltitude: number,
+    flag: string
+) => void;
 
 /*------------------------------------------------------------------------
  *                      TYPES FOR COMPONENT PROPS
