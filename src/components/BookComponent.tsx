@@ -11,10 +11,10 @@
  */
 import { useEffect, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
+import { CLASS_BUTTON } from "../Constants";
+import LoadingIndicator from "./LoadingIndicator";
 import { useScripturesDataContext } from "../context/ScripturesDataContextHook";
 import { BookProps } from "../Types";
-import LoadingIndicator from "./LoadingIndicator";
-import { CLASS_BUTTON } from "../Constants";
 import "./BookComponent.css";
 
 /*----------------------------------------------------------------------

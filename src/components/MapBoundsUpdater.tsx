@@ -1,14 +1,31 @@
+/*======================================================================
+ * FILE:    MapBoundsUpdater.tsx
+ * AUTHOR:  Stephen W. Liddle
+ * DATE:    Winter 2025
+ *
+ * DESCRIPTION: Component to set the map position and zoom when needed.
+ */
+
+/*----------------------------------------------------------------------
+ *                      IMPORTS
+ */
+import { useEffect } from "react";
 import { useMap } from "@vis.gl/react-google-maps";
 import { useScripturesDataContext } from "../context/ScripturesDataContextHook";
-import { useEffect } from "react";
 import { GeoPlace } from "../Types";
 
+/*----------------------------------------------------------------------
+ *                      CONSTANTS
+ */
 const VIEW_ALTITUDE_DEFAULT = 5000;
 const VIEW_ALTITUDE_CONVERSION_RATIO = 591657550.5;
 const VIEW_ALTITUDE_ZOOM_ADJUST = -2;
 const ZOOM_RATIO = 450;
 
-const boundsForCurrentMarkers = function (geoplaces: GeoPlace[]): google.maps.LatLngBounds {
+/*----------------------------------------------------------------------
+ *                      PRIVATE HELPERS
+ */
+function boundsForCurrentMarkers(geoplaces: GeoPlace[]) {
     const bounds = new google.maps.LatLngBounds();
 
     geoplaces.forEach((place) => {
@@ -16,9 +33,9 @@ const boundsForCurrentMarkers = function (geoplaces: GeoPlace[]): google.maps.La
     });
 
     return bounds;
-};
+}
 
-const zoomLevelForAltitude = function (viewAltitude: number): number {
+function zoomLevelForAltitude(viewAltitude: number) {
     let zoomLevel = viewAltitude / ZOOM_RATIO;
 
     if (viewAltitude !== VIEW_ALTITUDE_DEFAULT) {
@@ -27,8 +44,11 @@ const zoomLevelForAltitude = function (viewAltitude: number): number {
     }
 
     return zoomLevel;
-};
+}
 
+/*----------------------------------------------------------------------
+ *                      COMPONENT
+ */
 export function MapBoundsUpdater() {
     const map = useMap();
     const { focusedGeoplace, geoplaces } = useScripturesDataContext();

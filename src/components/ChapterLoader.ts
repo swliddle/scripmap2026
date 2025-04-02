@@ -12,9 +12,9 @@
 import { LRUCache } from "lru-cache";
 import { LoaderFunctionArgs } from "react-router-dom";
 import { MS_PER_HOUR } from "../Constants";
+import extractGeoplaces from "./MapHelper";
 import { fetchChapterHtml } from "../ServerApi";
 import { ChapterCacheEntry } from "../Types";
-import { extractGeoplaces } from "./MapHelper";
 
 /*----------------------------------------------------------------------
  *                      PRIVATE VARIABLES

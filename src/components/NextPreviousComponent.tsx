@@ -181,7 +181,7 @@ const titleForBookChapter = function (book: Book, chapter: number): string {
 };
 
 /*----------------------------------------------------------------------
- *                      COMPONENT
+ *                      COMPONENTS
  */
 export default function NextPreviousComponent() {
     const { books } = useScripturesDataContext();

@@ -134,11 +134,6 @@ export const useFetchScripturesData = function () {
 /*----------------------------------------------------------------------
  *                      PUBLIC FUNCTIONS
  */
-export const fetchChapterHtml = async function (bookId: number, chapter: number) {
+export async function fetchChapterHtml(bookId: number, chapter: number) {
     return fetch(encodedScripturesUrl(bookId, chapter)).then((response) => response.text());
-};
-
-// NEEDSWORK: figure this out
-// export const volumeIdIsValid = function (volumeId: number): boolean {
-//     return volumes.map((volume) => volume.id).includes(volumeId);
-// };
+}

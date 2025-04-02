@@ -10,8 +10,8 @@
  *                      IMPORTS
  */
 import { useParams } from "react-router-dom";
-import { useScripturesDataContext } from "../context/ScripturesDataContextHook";
 import LoadingIndicator from "./LoadingIndicator";
+import { useScripturesDataContext } from "../context/ScripturesDataContextHook";
 import VolumeComponent from "./VolumeComponent";
 import "./VolumesList.css";
 

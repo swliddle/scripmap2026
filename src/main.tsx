@@ -9,7 +9,6 @@
 /*----------------------------------------------------------------------
  *                      IMPORTS
  */
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
@@ -21,9 +20,8 @@ const rootDiv = document.getElementById("root");
 
 if (rootDiv) {
     createRoot(rootDiv).render(
-        // NEEDSWORK: remove StrictMode when deploying to production
-        <StrictMode>
-            <App />
-        </StrictMode>
+        // NOTE: Use StrictMode during development:
+        //           <StrictMode><App /></StrictMode>
+        <App />
     );
 }

@@ -6,11 +6,10 @@
  * DESCRIPTION: Module to support the Google Maps API.
  */
 
-import { GeoPlaces, GeoPlace } from "../Types";
-
 /*----------------------------------------------------------------------
- *                      CONSTANTS
+ *                      IMPORTS
  */
+import { GeoPlaces, GeoPlace } from "../Types";
 
 /*----------------------------------------------------------------------
  *                      CONSTANTS
@@ -18,9 +17,28 @@ import { GeoPlaces, GeoPlace } from "../Types";
 const LAT_LON_PARSER = /showLocation\(([0-9]*),'([^']*)',([^,]*),([^,]*),([^,]*),'([^']*)'\)/g;
 
 /*----------------------------------------------------------------------
+ *                      PRIVATE HELPERS
+ */
+function mergePlacename(geoplace: GeoPlace, name: string) {
+    if (!geoplace.placename.includes(name)) {
+        geoplace.placename += `, ${name}`;
+    }
+}
+
+function placenameWithFlag(name: string, flag?: string) {
+    let placename = name;
+
+    if (flag && flag.length > 0) {
+        placename += ` ${flag}`;
+    }
+
+    return placename;
+}
+
+/*----------------------------------------------------------------------
  *                      PUBLIC FUNCTIONS
  */
-export const extractGeoplaces = function (html: string): GeoPlaces {
+export default function extractGeoplaces(html: string): GeoPlaces {
     const uniqueGeoplaces: GeoPlaces = {};
 
     try {
@@ -48,70 +66,4 @@ export const extractGeoplaces = function (html: string): GeoPlaces {
     }
 
     return uniqueGeoplaces;
-};
-
-// const firstAltitude = function (geoplaces: GeoPlaces): number {
-//     // Return the first viewAltitude we can find in the dictionary
-
-//     const keys = Object.keys(geoplaces);
-
-//     if (keys.length > 0) {
-//         return geoplaces[keys[0]].viewAltitude;
-//     }
-
-//     return DEFAULT_VIEW_ALTITUDE;
-// };
-
-const mergePlacename = function (geoplace: GeoPlace, name: string): void {
-    if (!geoplace.placename.includes(name)) {
-        geoplace.placename += `, ${name}`;
-    }
-};
-
-const placenameWithFlag = function (name: string, flag?: string): string {
-    let placename = name;
-
-    if (flag && flag.length > 0) {
-        placename += ` ${flag}`;
-    }
-
-    return placename;
-};
-
-// const zoomMapToFitMarkers = function (viewAltitude: number): void {
-//     if (mapMarkers.length > 0) {
-//         if (mapMarkers.length === 1 && viewAltitude) {
-//             const marker = mapMarkers[0];
-
-//             zoomToOneMarker(marker, viewAltitude);
-//         } else {
-//             zoomToFitMarkerBounds();
-//         }
-//     }
-// };
-
-// const zoomToFitMarkerBounds = function (): void {
-//     const bounds = boundsForCurrentMarkers();
-
-//     window.map.panTo(bounds.getCenter());
-//     window.map.fitBounds(bounds);
-// };
-
-// const zoomToOneMarker = function (
-//     marker: google.maps.marker.AdvancedMarkerElement,
-//     viewAltitude: number
-// ): void {
-//     if (marker.position) {
-//         const lat =
-//             typeof marker.position.lat === "number" ? marker.position.lat : marker.position.lat();
-//         const lng =
-//             typeof marker.position.lng === "number" ? marker.position.lng : marker.position.lng();
-
-//         panAndZoom(lat, lng, viewAltitude);
-//     }
-// };
-
-// export const showLocation = function (lat: number, lng: number, viewAltitude: number): void {
-//     window.map.panTo({ lat, lng });
-//     window.map.setZoom(zoomLevelForAltitude(viewAltitude));
-// };
+}

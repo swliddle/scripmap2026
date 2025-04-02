@@ -9,12 +9,12 @@
 /*----------------------------------------------------------------------
  *                      IMPORTS
  */
+import { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
-import "./ChapterComponent.css";
+import { ANIMATION_MARKER_DELAY } from "../Constants";
 import { NextSideComponent, PreviousSideComponent } from "./NextPreviousComponent";
 import { useScripturesDataContext } from "../context/ScripturesDataContextHook";
-import { useEffect, useState } from "react";
-import { ANIMATION_MARKER_DELAY } from "../Constants";
+import "./ChapterComponent.css";
 
 /*----------------------------------------------------------------------
  *                      COMPONENT
