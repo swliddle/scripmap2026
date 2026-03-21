@@ -9,18 +9,20 @@
 /*----------------------------------------------------------------------
  *                      IMPORTS
  */
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Header from "./Header";
 import MapDisplay from "./MapDisplay";
 import Navigation from "./Navigation";
 import NextPreviousComponent from "./NextPreviousComponent";
-import { useScripturesDataContext } from "../context/ScripturesDataContextHook";
+import { MapDataContext } from "../context/MapData";
+import { GeoPlace, GeoPlaces } from "../Types";
 
 /*----------------------------------------------------------------------
  *                      COMPONENT
  */
 export default function MainPage() {
-    const { setFocusedGeoplace } = useScripturesDataContext();
+    const [focusedGeoplace, setFocusedGeoplace] = useState<GeoPlace | null>(null);
+    const [geoplaces, setGeoplaces] = useState<GeoPlaces | null>(null);
 
     useEffect(() => {
         window.showLocation = (
@@ -32,14 +34,16 @@ export default function MainPage() {
         ) => {
             setFocusedGeoplace({ latitude, longitude, placename, viewAltitude });
         };
-    }, [setFocusedGeoplace]);
+    }, []);
 
     return (
-        <main>
-            <Header />
-            <Navigation />
-            <NextPreviousComponent />
-            <MapDisplay />
-        </main>
+        <MapDataContext value={{ focusedGeoplace, geoplaces, setFocusedGeoplace, setGeoplaces }}>
+            <main>
+                <Header />
+                <Navigation />
+                <NextPreviousComponent />
+                <MapDisplay />
+            </main>
+        </MapDataContext>
     );
 }

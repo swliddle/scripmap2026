@@ -14,7 +14,7 @@ import { useLoaderData, useParams } from "react-router-dom";
 import { ANIMATION_MARKER_DELAY } from "../Constants";
 import { ChapterCacheEntry } from "../Types";
 import { NextSideComponent, PreviousSideComponent } from "./NextPreviousComponent";
-import { useScripturesDataContext } from "../context/ScripturesDataContextHook";
+import { useMapContext } from "../context/MapDataContextHook";
 import "./ChapterComponent.css";
 
 /*----------------------------------------------------------------------
@@ -22,7 +22,7 @@ import "./ChapterComponent.css";
  */
 export default function ChapterComponent() {
     const { bookId, chapter } = useParams();
-    const { setFocusedGeoplace, setGeoplaces } = useScripturesDataContext();
+    const { setFocusedGeoplace, setGeoplaces } = useMapContext();
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
     const loaderData = useLoaderData() as ChapterCacheEntry | undefined;
     const [cachedData, setCachedData] = useState(loaderData);

@@ -12,7 +12,7 @@
 import { useMemo } from "react";
 import { AdvancedMarker, APIProvider, ControlPosition, Map } from "@vis.gl/react-google-maps";
 import { MapBoundsUpdater } from "./MapBoundsUpdater";
-import { useScripturesDataContext } from "../context/ScripturesDataContextHook";
+import { useMapContext } from "../context/MapDataContextHook";
 import "./MapDisplay.css";
 
 /*----------------------------------------------------------------------
@@ -32,7 +32,7 @@ const MAP_ID = "dd27f636464f8569";
  *                      COMPONENT
  */
 export default function MapDisplay() {
-    const { geoplaces } = useScripturesDataContext();
+    const { geoplaces } = useMapContext();
 
     if (!API_KEY) {
         throw new Error("Unable to display Google Map.");

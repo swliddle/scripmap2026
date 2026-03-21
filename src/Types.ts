@@ -52,13 +52,16 @@ export interface Volume extends Book {
     books: Book[];
 }
 
-export type ScripturesContextType = {
-    books: Books;
+export type MapContextType = {
     focusedGeoplace: GeoPlace | null;
     geoplaces: GeoPlaces | null;
-    isLoading: boolean;
     setFocusedGeoplace: (geoplace: GeoPlace | null) => void;
     setGeoplaces: (geoplaces: GeoPlaces | null) => void;
+};
+
+export type ScripturesContextType = {
+    books: Books;
+    isLoading: boolean;
     volumes: Volume[];
 };
 
