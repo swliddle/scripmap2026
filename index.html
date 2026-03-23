@@ -4,57 +4,30 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>The Scriptures Mapped</title>
+        <meta name="author" content="Stephen W. Liddle" />
+        <meta name="description" content="The Scriptures Mapped" />
 
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <meta property="og:title" content="The Scriptures Mapped" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://scriptures.byu.edu/mapscrip" />
+        <meta property="og:image" content="" />
+
+        <meta name="theme-color" content="#fafafa" />
+
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/logo192.png" />
+        <link rel="manifest" href="/manifest.json" />
+
         <link
-            href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+            href="https://fonts.googleapis.com/css?family=Roboto"
             rel="stylesheet"
+            type="text/css"
         />
+
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        <link rel="stylesheet" href="css/scriptures.css" />
-        <link rel="stylesheet" href="css/Waves.css" />
     </head>
-    <body class="main-page">
-        <header id="scrip-header">
-            <div id="crumbs"></div>
-            <div class="title-block">
-                <h1 class="title">The Scriptures Mapped</h1>
-                <h2 class="subtitle">By Stephen W. Liddle</h2>
-            </div>
-            <div id="crumbs-complement"></div>
-        </header>
-        <nav id="nav-root"></nav>
-        <main id="map"></main>
-        <script type="module">
-            import { init, onHashChanged, panAndZoom } from "./js/scriptures.js";
-
-            function ready(readyListener) {
-                if (document.readyState === "loading") {
-                    document.addEventListener("DOMContentLoaded", readyListener);
-                } else {
-                    readyListener();
-                }
-            }
-
-            ready(() => {
-                init(() => {
-                    window.addEventListener("hashchange", onHashChanged);
-                    onHashChanged();
-                    window.showLocation = function (
-                        geotagId,
-                        placename,
-                        latitude,
-                        longitude,
-                        viewAltitude,
-                        flag
-                    ) {
-                        panAndZoom(latitude, longitude, viewAltitude);
-                    };
-                });
-            });
-        </script>
-
-        <script defer type="text/javascript" src="./js/Waves.js" />
+    <body>
+        <div id="root"></div>
+        <script type="module" src="/src/main.tsx"></script>
     </body>
 </html>

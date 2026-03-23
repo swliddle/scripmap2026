@@ -1,0 +1,96 @@
+:root {
+    color-scheme: light dark;
+
+    --body-background-color: rgb(236, 226, 217);
+    --body-text-color: #201500;
+
+    --chapter-background-color: #fffcfc;
+
+    --header-background-color: #3f2000;
+    --header-text-color: #f0f0f0;
+    --header-hover-color: #d0d0ff;
+    --header-shadow-1: rgba(0, 0, 0, 0.16);
+    --header-shadow-2: rgba(0, 0, 0, 0.12);
+
+    --button-background-color: rgba(255, 255, 255, 0.65);
+    --button-text-color: #201500;
+    --button-shadow-1: rgba(0, 0, 0, 0.14);
+    --button-shadow-2: rgba(0, 0, 0, 0.12);
+    --button-shadow-3: rgba(0, 0, 0, 0.2);
+
+    --link-visited-color: blue;
+    --active-hover-color: blue;
+    --anchor-name-color: black;
+    --volume-hover-color: #33b;
+    --scripture-link-color: #44b;
+    --scripture-hover-color: #4488ff;
+
+    --match-background-color: #ffffbb;
+
+    --border-nav-map-color: #aaa;
+
+    --nav-hover-color: rgba(0, 0, 0, 0.05);
+
+    --text-shadow-color: #fff;
+    --map-text-color: #201500;
+    --map-text-shadow-color: #fff8f0;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --body-background-color: black;
+        --body-text-color: #d8d8d8;
+
+        --chapter-background-color: #222;
+
+        /* We're keeping the same header background/foreground colors in both color schemes */
+        --header-shadow-1: rgba(255, 255, 255, 0.06);
+        --header-shadow-2: rgba(255, 255, 255, 0.08);
+
+        --button-background-color: rgba(75, 75, 75, 0.75);
+        --button-text-color: #ccc;
+        --button-shadow-1: rgba(255, 255, 255, 0.2);
+        --button-shadow-2: rgba(255, 255, 255, 0.12);
+        --button-shadow-3: rgba(255, 255, 255, 0.14);
+
+        --link-visited-color: #b0b0ff;
+        --active-hover-color: #ffb0b0;
+        --anchor-name-color: #b0b0b0;
+        --volume-hover-color: #d0d0ff;
+        --scripture-link-color: #b0b0ff;
+
+        --match-background-color: #303022;
+
+        --border-nav-map-color: #555;
+
+        --nav-hover-color: rgba(255, 255, 255, 0.14);
+
+        --text-shadow-color: #222;
+        --map-text-color: #d59563;
+        --map-text-shadow-color: #242f3e;
+    }
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: "Roboto", sans-serif;
+    font-size: 12pt;
+}
+
+body {
+    color: var(--body-text-color);
+    background-color: var(--body-background-color);
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+@media screen and (max-width: 44rem) {
+    body {
+        font-size: 10pt;
+        height: 100%;
+        width: 100%;
+    }
+}

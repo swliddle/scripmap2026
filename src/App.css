@@ -1,0 +1,24 @@
+main {
+    background-color: antiquewhite;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 4em auto 2em;
+    grid-template-areas:
+        "header header"
+        "nav map"
+        "nextprev map";
+}
+
+@media screen and (max-width: 44rem) {
+    main {
+        grid-template-columns: auto;
+        grid-template-rows: 2fr 2rem 1fr 1rem;
+        grid-template-areas:
+            "map"
+            "header"
+            "nav"
+            "nextprev";
+    }
+}
